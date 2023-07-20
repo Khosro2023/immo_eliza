@@ -31,7 +31,7 @@ The data collection process involved the removal of duplicates and missing value
 
 
 4-Data Analyzing
-After preprocessing the data, it is split into training and testing sets. We then use machine learning to build a regression model that can predict prices of a properties in future. 
+After preprocessing the data, it is split into training and testing sets. We then use machine learning to build a regression model using DecisionTreeRegressor,LinearRegression, SVR function that can predict prices of a properties in future. 
 
 
 5-Usage
