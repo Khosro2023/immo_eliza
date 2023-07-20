@@ -30,14 +30,23 @@ y_h = houses_df_cleaned.Price.to_numpy().reshape(-1 , 1)
 
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.svm import SVR
+
+
 def training_testing_scores(x_data, y_data):
     x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, random_state=42)
-    regressor = LinearRegression()
-    regressor.fit(x_train,y_train)
-    train_score = regressor.score(x_train, y_train)
-    test_score =regressor.score(x_test, y_test)
-    
-    return train_score, test_score
+    train_list = []
+    test_list=[]
+    for regressor in [DecisionTreeRegressor(max_depth=10),LinearRegression(), SVR(kernel='linear', C=1.0)]: 
+     regressor.fit(x_train,y_train)
+     train_score = regressor.score(x_train, y_train)
+     test_score =regressor.score(x_test, y_test)
+     train_list.append(train_score)
+     test_list.append(test_score)
+
+    return train_list, test_list
+
 print(training_testing_scores(x_h,y_h),"Houses Scores")
 
 
